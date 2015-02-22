@@ -7,24 +7,23 @@
 # === Authors
 #
 #   John Florian <jflorian@doubledog.org>
+#
+# === Copyright
+#
+# Copyright 2014-2015 John Florian
 
 
 class tuned::params {
 
     case $::operatingsystem {
-
         Fedora: {
-            $packages = [
-                'tuned',
-            ]
-            $services = [
-                'tuned',
-            ]
+            $packages = 'tuned'
+            $services = 'tuned'
 
         }
 
         default: {
-            fail ("The tuned module is not yet supported on $::operatingsystem.")
+            fail ("${title}: operating system '${::operatingsystem}' is not supported")
         }
 
     }

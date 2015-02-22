@@ -2,9 +2,15 @@
 #
 # == Class: tuned
 #
-# Configures a host to run tuned for power/performance management.
+# Manages MODULE_NAME on a host.
 #
 # === Parameters
+#
+# [*ensure*]
+#   Service is to be 'running' (default) or 'stopped'.
+#
+# [*enable*]
+#   Service is to be started at boot; either true (default) or false.
 #
 # [*profile*]
 #   Profile that tuned is to use.  The default is to automatically select the
@@ -13,15 +19,23 @@
 # === Authors
 #
 #   John Florian <jflorian@doubledog.org>
+#
+# === Copyright
+#
+# Copyright 2014-2015 John Florian
 
 
-class tuned ($profile=undef) {
+class tuned (
+        $ensure='running',
+        $enable=true,
+        $profile=undef,
+    ) {
 
     include 'tuned::params'
 
     package { $tuned::params::packages:
-        ensure  => installed,
-        notify  => Service[$tuned::params::services],
+        ensure => installed,
+        notify => Service[$tuned::params::services],
     }
 
     File {
@@ -36,20 +50,15 @@ class tuned ($profile=undef) {
         subscribe   => Package[$tuned::params::packages],
     }
 
-    if $profile == undef {
-        file { '/etc/tuned/active_profile':
-        }
-    } else {
-        file { '/etc/tuned/active_profile':
-            content => "$profile",
-        }
+    file { '/etc/tuned/active_profile':
+        content => $profile,
     }
 
     service { $tuned::params::services:
-        enable      => true,
-        ensure      => running,
-        hasrestart  => true,
-        hasstatus   => true,
+        ensure     => $ensure,
+        enable     => $enable,
+        hasrestart => true,
+        hasstatus  => true,
     }
 
 }
