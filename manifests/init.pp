@@ -2,7 +2,7 @@
 #
 # == Class: tuned
 #
-# Manages MODULE_NAME on a host.
+# Manages the tuned service on a host.
 #
 # === Parameters
 #
@@ -39,15 +39,15 @@ class tuned (
     }
 
     File {
-        owner       => 'root',
-        group       => 'root',
-        mode        => '0644',
-        seluser     => 'system_u',
-        selrole     => 'object_r',
-        seltype     => 'tuned_rw_etc_t',
-        before      => Service[$tuned::params::services],
-        notify      => Service[$tuned::params::services],
-        subscribe   => Package[$tuned::params::packages],
+        owner     => 'root',
+        group     => 'root',
+        mode      => '0644',
+        seluser   => 'system_u',
+        selrole   => 'object_r',
+        seltype   => 'tuned_rw_etc_t',
+        before    => Service[$tuned::params::services],
+        notify    => Service[$tuned::params::services],
+        subscribe => Package[$tuned::params::packages],
     }
 
     file { '/etc/tuned/active_profile':
