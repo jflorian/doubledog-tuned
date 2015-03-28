@@ -30,7 +30,7 @@
 class tuned (
         $ensure='running',
         $enable=true,
-        $profile=undef,
+        $profile='',
     ) {
 
     include 'tuned::params'
@@ -53,7 +53,7 @@ class tuned (
     }
 
     file { '/etc/tuned/active_profile':
-        content => $profile,
+        content => "${profile}\n",
     }
 
     service { $tuned::params::services:
