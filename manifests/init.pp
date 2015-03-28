@@ -6,17 +6,20 @@
 #
 # === Parameters
 #
+# ==== Required
+#
+# [*profile*]
+#   Profile that tuned is to use.  Run "sudo tuned-adm list" to see a list of
+#   available profile names as well as the currently active one.  See
+#   tuned-adm(8) for details.
+#
+# ==== Optional
+#
 # [*ensure*]
 #   Service is to be 'running' (default) or 'stopped'.
 #
 # [*enable*]
 #   Service is to be started at boot; either true (default) or false.
-#
-# [*profile*]
-#   Profile that tuned is to use.  The default is to automatically select the
-#   recommended profile.  Run "sudo tuned-adm list" to see a list of available
-#   profile names as well as the currently active one.  See tuned-adm(8) for
-#   details.
 #
 # === Authors
 #
@@ -28,16 +31,19 @@
 
 
 class tuned (
-        $ensure='running',
+        $profile,
         $enable=true,
-        $profile='',
-    ) {
+        $ensure='running',
+    ) inherits ::tuned::params {
 
-    include 'tuned::params'
+    validate_re(
+        $profile, '^.+$',
+        "${title}: 'profile' must be a non-null string"
+    )
 
-    package { $tuned::params::packages:
+    package { $::tuned::params::packages:
         ensure => installed,
-        notify => Service[$tuned::params::services],
+        notify => Service[$::tuned::params::services],
     }
 
     File {
@@ -47,16 +53,16 @@ class tuned (
         seluser   => 'system_u',
         selrole   => 'object_r',
         seltype   => 'tuned_rw_etc_t',
-        before    => Service[$tuned::params::services],
-        notify    => Service[$tuned::params::services],
-        subscribe => Package[$tuned::params::packages],
+        before    => Service[$::tuned::params::services],
+        notify    => Service[$::tuned::params::services],
+        subscribe => Package[$::tuned::params::packages],
     }
 
     file { '/etc/tuned/active_profile':
         content => "${profile}\n",
     }
 
-    service { $tuned::params::services:
+    service { $::tuned::params::services:
         ensure     => $ensure,
         enable     => $enable,
         hasrestart => true,
