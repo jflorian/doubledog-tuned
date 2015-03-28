@@ -14,7 +14,9 @@
 #
 # [*profile*]
 #   Profile that tuned is to use.  The default is to automatically select the
-#   recommended profile.  See tuned-adm(8) for details.
+#   recommended profile.  Run "sudo tuned-adm list" to see a list of available
+#   profile names as well as the currently active one.  See tuned-adm(8) for
+#   details.
 #
 # === Authors
 #
