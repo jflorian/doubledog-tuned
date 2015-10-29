@@ -16,7 +16,9 @@
 class tuned::params {
 
     case $::operatingsystem {
-        Fedora: {
+
+        'CentOS', 'Fedora': {
+
             $packages = 'tuned'
             $services = 'tuned'
 
