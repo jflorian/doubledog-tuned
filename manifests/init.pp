@@ -27,7 +27,7 @@
 #
 # === Copyright
 #
-# Copyright 2014-2016 John Florian
+# Copyright 2014-2017 John Florian
 
 
 class tuned (
@@ -46,20 +46,21 @@ class tuned (
         notify => Service[$::tuned::params::services],
     }
 
-    File {
-        owner     => 'root',
-        group     => 'root',
-        mode      => '0644',
-        seluser   => 'system_u',
-        selrole   => 'object_r',
-        seltype   => 'tuned_rw_etc_t',
-        before    => Service[$::tuned::params::services],
-        notify    => Service[$::tuned::params::services],
-        subscribe => Package[$::tuned::params::packages],
-    }
-
-    file { '/etc/tuned/active_profile':
-        content => "${profile}\n",
+    file {
+        default:
+            owner     => 'root',
+            group     => 'root',
+            mode      => '0644',
+            seluser   => 'system_u',
+            selrole   => 'object_r',
+            seltype   => 'tuned_rw_etc_t',
+            before    => Service[$::tuned::params::services],
+            notify    => Service[$::tuned::params::services],
+            subscribe => Package[$::tuned::params::packages],
+            ;
+        '/etc/tuned/active_profile':
+            content => "${profile}\n",
+            ;
     }
 
     service { $::tuned::params::services:
