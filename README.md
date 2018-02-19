@@ -32,10 +32,22 @@ This module lets you manage `tuned`, the dynamic adaptive system tuning daemon.
 
 **Classes:**
 
+* [tuned](#tuned-class)
+
 **Defined types:**
 
 
 ### Classes
+
+#### tuned class
+
+This class manages the `tuned` daemon.
+
+##### `packages`
+An array of package names needed for the `tuned` installation.  The default should be correct for supported platforms.
+
+##### `service`
+The service name of the `tuned` daemon.  The default should be correct for supported platforms.
 
 
 ### Defined types

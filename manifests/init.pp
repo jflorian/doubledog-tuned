@@ -1,4 +1,3 @@
-# modules/tuned/manifests/init.pp
 #
 # == Class: tuned
 #
@@ -27,23 +26,25 @@
 #
 # === Copyright
 #
-# Copyright 2014-2017 John Florian
+# Copyright 2014-2018 John Florian
 
 
 class tuned (
         $profile,
         $enable=true,
         $ensure='running',
-    ) inherits ::tuned::params {
+        Array[String[1], 1]     $packages,
+        String[1]               $service,
+    ) {
 
     validate_re(
         $profile, '^.+$',
         "${title}: 'profile' must be a non-null string"
     )
 
-    package { $::tuned::params::packages:
+    package { $packages:
         ensure => installed,
-        notify => Service[$::tuned::params::services],
+        notify => Service[$service],
     }
 
     file {
@@ -54,16 +55,16 @@ class tuned (
             seluser   => 'system_u',
             selrole   => 'object_r',
             seltype   => 'tuned_rw_etc_t',
-            before    => Service[$::tuned::params::services],
-            notify    => Service[$::tuned::params::services],
-            subscribe => Package[$::tuned::params::packages],
+            before    => Service[$service],
+            notify    => Service[$service],
+            subscribe => Package[$packages],
             ;
         '/etc/tuned/active_profile':
             content => "${profile}\n",
             ;
     }
 
-    service { $::tuned::params::services:
+    service { $service:
         ensure     => $ensure,
         enable     => $enable,
         hasrestart => true,

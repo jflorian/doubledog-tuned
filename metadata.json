@@ -1,6 +1,6 @@
 {
 	"name": "doubledog-tuned",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"author": "John Florian",
 	"license": "GPL-3.0",
 	"summary": "A module to manage the tuned, the dynamic adaptive system tuning daemon",
