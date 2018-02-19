@@ -12,14 +12,6 @@
 #   available profile names as well as the currently active one.  See
 #   tuned-adm(8) for details.
 #
-# ==== Optional
-#
-# [*ensure*]
-#   Service is to be 'running' (default) or 'stopped'.
-#
-# [*enable*]
-#   Service is to be started at boot; either true (default) or false.
-#
 # === Authors
 #
 #   John Florian <jflorian@doubledog.org>
@@ -31,10 +23,10 @@
 
 class tuned (
         $profile,
-        $enable=true,
-        $ensure='running',
-        Array[String[1], 1]     $packages,
-        String[1]               $service,
+        Boolean                                         $enable,
+        Variant[Boolean, Enum['running', 'stopped']]    $ensure,
+        Array[String[1], 1]                             $packages,
+        String[1]                                       $service,
     ) {
 
     validate_re(

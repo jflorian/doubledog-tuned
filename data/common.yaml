@@ -1,4 +1,6 @@
 ---
+tuned::enable:                true
+tuned::ensure:                running
 tuned::packages:
     - tuned
 tuned::service:               tuned
