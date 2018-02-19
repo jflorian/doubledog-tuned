@@ -3,15 +3,6 @@
 #
 # Manages the tuned service on a host.
 #
-# === Parameters
-#
-# ==== Required
-#
-# [*profile*]
-#   Profile that tuned is to use.  Run "sudo tuned-adm list" to see a list of
-#   available profile names as well as the currently active one.  See
-#   tuned-adm(8) for details.
-#
 # === Authors
 #
 #   John Florian <jflorian@doubledog.org>
@@ -22,17 +13,12 @@
 
 
 class tuned (
-        $profile,
+        String[1]                                       $profile,
         Boolean                                         $enable,
         Variant[Boolean, Enum['running', 'stopped']]    $ensure,
         Array[String[1], 1]                             $packages,
         String[1]                                       $service,
     ) {
-
-    validate_re(
-        $profile, '^.+$',
-        "${title}: 'profile' must be a non-null string"
-    )
 
     package { $packages:
         ensure => installed,

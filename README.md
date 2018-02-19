@@ -43,6 +43,9 @@ This module lets you manage `tuned`, the dynamic adaptive system tuning daemon.
 
 This class manages the `tuned` daemon.
 
+##### `profile` (required)
+Name of the profile that `tuned` is to activate.  Run `sudo tuned-adm list` to see a list of available profile names as well as the currently active one.  See tuned-adm(8) for details.
+
 ##### `enable`
 Instance is to be started at boot.  Either `true` (default) or `false`.
 
