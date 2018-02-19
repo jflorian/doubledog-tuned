@@ -1,0 +1,16 @@
+{
+	"name": "doubledog-tuned",
+	"version": "0.1.0",
+	"author": "John Florian",
+	"license": "GPL-3.0",
+	"summary": "A module to manage the tuned, the dynamic adaptive system tuning daemon",
+	"source": "https://www.doubledog.org/git/puppet-tuned.git",
+	"operatingsystem_support": [{
+		"operatingsystem": "CentOS",
+		"operatingsystemmajrelease": "7"
+	}, {
+		"operatingsystem": "Fedora",
+		"operatingsystemrelease": ["26", "27"]
+	}],
+	"dependencies": []
+}
