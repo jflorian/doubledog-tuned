@@ -1,3 +1,14 @@
+<!---
+Copyright 2018 John Florian <jflorian@doubledog.org>
+SPDX-License-Identifier: GPL-3.0-or-later
+
+This file is part of the doubledog-tuned Puppet module.
+
+doubledog-tuned is free software; you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License as published by the
+Free Software Foundation; either version 3.0 of the License, or (at your
+option) any later version.
+-->
 # tuned
 
 #### Table of Contents
@@ -36,6 +47,8 @@ This module lets you manage `tuned`, the dynamic adaptive system tuning daemon.
 
 **Defined types:**
 
+* [tuned::profile](#tunedprofile-defined-type)
+
 
 ### Classes
 
@@ -60,6 +73,22 @@ The service name of the `tuned` daemon.  The default should be correct for suppo
 
 
 ### Defined types
+
+#### tuned::profile defined type
+
+This defined type lets you manage custom tuned profiles.
+
+##### `namevar` (REQUIRED)
+The name of the profile.
+
+##### `ensure`
+Instance is to be `present` (default) or `absent`.  Alternatively, a Boolean value may also be used with `true` equivalent to `present` and `false` equivalent to `absent`.
+
+##### `content`
+Literal content for the profile file.  One and only one of `content` or `source` must be given.
+
+##### `source`
+URI of the profile file content.  One and only one of `content` or `source` must be given.
 
 
 ## Limitations
