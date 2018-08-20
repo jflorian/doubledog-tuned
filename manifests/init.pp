@@ -40,6 +40,9 @@ class tuned (
         '/etc/tuned/active_profile':
             content => "${profile}\n",
             ;
+        '/etc/tuned/profile_mode':
+            content => "manual\n",
+            ;
     }
 
     service { $service:
