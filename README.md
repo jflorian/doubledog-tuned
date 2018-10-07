@@ -1,14 +1,9 @@
 <!---
+This file is part of the doubledog-tuned Puppet module.
 Copyright 2018 John Florian <jflorian@doubledog.org>
 SPDX-License-Identifier: GPL-3.0-or-later
-
-This file is part of the doubledog-tuned Puppet module.
-
-doubledog-tuned is free software; you can redistribute it and/or modify it
-under the terms of the GNU Lesser General Public License as published by the
-Free Software Foundation; either version 3.0 of the License, or (at your
-option) any later version.
 -->
+
 # tuned
 
 #### Table of Contents
@@ -22,6 +17,8 @@ option) any later version.
 1. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
     * [Classes](#classes)
     * [Defined types](#defined-types)
+    * [Data types](#data-types)
+    * [Facts](#facts)
 1. [Limitations - OS compatibility, etc.](#limitations)
 1. [Development - Guide for contributing to the module](#development)
 
@@ -49,6 +46,10 @@ This module lets you manage `tuned`, the dynamic adaptive system tuning daemon.
 
 * [tuned::profile](#tunedprofile-defined-type)
 
+**Data types:**
+
+**Facts:**
+
 
 ### Classes
 
@@ -63,7 +64,7 @@ Name of the profile that `tuned` is to activate.  Run `sudo tuned-adm list` to s
 Instance is to be started at boot.  Either `true` (default) or `false`.
 
 ##### `ensure`
-Instance is to be `running` (default) or `stopped`.  Alternatively, a Boolean value may also be used with `true` equivalent to `running` and `false` equivalent to `stopped`.
+Instance is to be `'running'` (default) or `'stopped'`.  Alternatively, a Boolean value may also be used with `true` equivalent to `'running'` and `false` equivalent to `'stopped'`.
 
 ##### `packages`
 An array of package names needed for the `tuned` installation.  The default should be correct for supported platforms.
@@ -84,14 +85,19 @@ This defined type lets you manage custom tuned profiles.
 ##### `namevar` (REQUIRED)
 The name of the profile.
 
-##### `ensure`
-Instance is to be `present` (default) or `absent`.  Alternatively, a Boolean value may also be used with `true` equivalent to `present` and `false` equivalent to `absent`.
-
 ##### `content`
-Literal content for the profile file.  One and only one of `content` or `source` must be given.
+Literal content for the file.  If neither *content* nor *source* is given, the content of the file will be left unmanaged.
+
+##### `ensure`
+Instance is to be `'present'` (default) or `'absent'`.  Alternatively, a Boolean value may also be used with `true` equivalent to `'present'` and `false` equivalent to `'absent'`.
 
 ##### `source`
-URI of the profile file content.  One and only one of `content` or `source` must be given.
+URI of the file content.  If neither *content* nor *source* is given, the content of the file will be left unmanaged.
+
+
+### Data types
+
+### Facts
 
 
 ## Limitations
