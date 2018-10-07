@@ -68,6 +68,9 @@ Instance is to be `running` (default) or `stopped`.  Alternatively, a Boolean va
 ##### `packages`
 An array of package names needed for the `tuned` installation.  The default should be correct for supported platforms.
 
+##### `profiles`
+A hash whose keys are profile resource names and whose values are hashes comprising the same parameters you would otherwise pass to the [tuned::profile](#tunedprofile-defined-type) defined type.
+
 ##### `service`
 The service name of the `tuned` daemon.  The default should be correct for supported platforms.
 

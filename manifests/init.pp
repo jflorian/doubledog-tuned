@@ -19,6 +19,7 @@ class tuned (
         Boolean                 $enable,
         Ddolib::Service::Ensure $ensure,
         Array[String[1], 1]     $packages,
+        Hash[String[1], Hash]   $profiles,
         String[1]               $service,
     ) {
 
@@ -53,5 +54,7 @@ class tuned (
         hasrestart => true,
         hasstatus  => true,
     }
+
+    create_resources(tuned::profile, $profiles)
 
 }
