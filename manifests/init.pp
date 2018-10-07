@@ -45,6 +45,7 @@ class tuned (
             ;
         '/etc/tuned/profile_mode':
             content => "manual\n",
+            seltype => 'tuned_etc_t',
             ;
     }
 
