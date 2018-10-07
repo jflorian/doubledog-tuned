@@ -20,7 +20,7 @@ define tuned::profile (
         Optional[String]        $source=undef,
     ) {
 
-    include '::tuned'
+    include 'tuned'
 
     file {
         default:
@@ -38,7 +38,7 @@ define tuned::profile (
             ensure  => $ensure,
             content => $content,
             source  => $source,
-            notify  => Service[$::tuned::service],
+            notify  => Service[$tuned::service],
             ;
     }
 
