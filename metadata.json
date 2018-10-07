@@ -14,5 +14,10 @@
         "operatingsystem": "Fedora",
         "operatingsystemrelease": ["26", "27"]
     }],
-    "dependencies": []
+    "dependencies": [
+        {
+            "name": "doubledog/ddolib",
+            "version_requirement": ">= 0.0.0 < 1.0.0"
+        }
+    ]
 }

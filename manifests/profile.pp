@@ -15,9 +15,9 @@
 
 
 define tuned::profile (
-        Variant[Boolean, Enum['present', 'absent']]     $ensure='present',
-        Optional[String]                                $content=undef,
-        Optional[String]                                $source=undef,
+        Ddolib::File::Ensure    $ensure='present',
+        Optional[String]        $content=undef,
+        Optional[String]        $source=undef,
     ) {
 
     include '::tuned'

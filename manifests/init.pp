@@ -9,15 +9,17 @@
 #
 # === Copyright
 #
+# This file is part of the doubledog-tuned Puppet module.
 # Copyright 2014-2018 John Florian
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 
 class tuned (
-        String[1]                                       $profile,
-        Boolean                                         $enable,
-        Variant[Boolean, Enum['running', 'stopped']]    $ensure,
-        Array[String[1], 1]                             $packages,
-        String[1]                                       $service,
+        String[1]               $profile,
+        Boolean                 $enable,
+        Ddolib::Service::Ensure $ensure,
+        Array[String[1], 1]     $packages,
+        String[1]               $service,
     ) {
 
     package { $packages:
