@@ -1,6 +1,6 @@
 {
     "name": "doubledog-tuned",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "author": "John Florian",
     "summary": "A module to manage the tuned, the dynamic adaptive system tuning daemon",
     "license": "GPL-3.0",
@@ -10,20 +10,22 @@
     "operatingsystem_support": [
         {
             "operatingsystem": "CentOS",
-            "operatingsystemmajrelease": "7"
+            "operatingsystemmajrelease": [
+                "7"
+            ]
         },
         {
             "operatingsystem": "Fedora",
             "operatingsystemrelease": [
-                "27",
-                "28"
+                "28",
+                "29"
             ]
         }
     ],
     "dependencies": [
         {
             "name": "doubledog/ddolib",
-            "version_requirement": ">= 0.0.0 < 1.0.0"
+            "version_requirement": ">= 1.0.0 < 2.0.0"
         }
     ]
 }
