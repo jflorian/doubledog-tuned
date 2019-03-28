@@ -10,12 +10,13 @@
     "operatingsystem_support": [
         {
             "operatingsystem": "CentOS",
-            "operatingsystemmajrelease": "7"
+            "operatingsystemmajrelease": [
+                "7"
+            ]
         },
         {
             "operatingsystem": "Fedora",
             "operatingsystemrelease": [
-                "27",
                 "28"
             ]
         }
